@@ -32,12 +32,10 @@ jobs:
     - name: Run Playwright Tests
       run: mvn test
 
-    
-    - name: Publish Test Report
-      uses: dorny/test-reporter@v1
-      if: always()
-      with:
-         name: JUnit Tests
-         path: PlaywrightTesting/src/test/java/org/example/*.xml
-         reporter: java-junit
+  
+    - name: Print JUnit Test Summary
+      run: |
+        echo "================ JUnit Test Summary ================"
+        cat target/surefire-reports/*.txt || echo "No test report found"
+        echo "===================================================="
 
