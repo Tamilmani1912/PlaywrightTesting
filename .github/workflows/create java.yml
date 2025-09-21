@@ -30,16 +30,21 @@ jobs:
     - name: Run Playwright Tests
       run: mvn test
       
+   
+    - name: Install Allure CLI
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y allure
+
     - name: Generate Allure Report
       run: |
-        mkdir -p allure-report
-        mvn allure:report
+       mvn allure:report
+        allure generate target/site/allure-maven-plugin --clean -o allure-report
 
-    - name: Upload Allure Report as Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: allure-report
-        path: target/site/allure-maven-plugin
+        - name: Print Allure Summary
+          run: |
+            allure summary allure-report || echo "No summary available"
+
 
 
 
