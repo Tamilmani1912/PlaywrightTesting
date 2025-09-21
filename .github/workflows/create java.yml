@@ -31,11 +31,11 @@ jobs:
 
     - name: Run Playwright Tests
       run: mvn test
+      
+    - name: ✅ Build and Test Completed Successfully
+      if: success()
+      run: echo "🎉 All tests passed and build succeeded!"
+
 
   
-    - name: Print JUnit Test Summary
-      run: |
-        echo "================ JUnit Test Summary ================"
-        cat target/surefire-reports/*.txt || echo "No test report found"
-        echo "===================================================="
-
+   
