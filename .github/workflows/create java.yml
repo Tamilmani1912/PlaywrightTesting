@@ -32,15 +32,12 @@ jobs:
     - name: Run Playwright Tests
       run: mvn test
 
-    - name: Install Allure CLI
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y allure
+    
+    - name: Publish Test Report
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+         name: JUnit Tests
+         path: PlaywrightTesting/src/test/java/org/example/*.xml
+         reporter: java-junit
 
-    - name: Generate and Print Allure Summary
-      run: |
-        mvn allure:report
-        allure generate target/site/allure-maven-plugin --clean -o allure-report
-        echo "================ Allure Report Summary ================"
-        allure summary allure-report || echo "No summary available"
-        echo "======================================================="
