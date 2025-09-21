@@ -8,7 +8,9 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    runs-on: Self-hosted
+    environment: test
 
     steps:
     - name: Checkout code
@@ -31,6 +33,11 @@ jobs:
 
     - name: Run Playwright Tests
       run: mvn test
+
+    - name: Vars- Testing
+      run: echo '${{vars.MY_TESTING}}'
+    - name: Secret Key
+      run: echo '${{secrets.MY_SECRET_KEY}}'
       
     - name: ✅ Build and Test Completed Successfully
       if: success()
