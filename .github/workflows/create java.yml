@@ -40,10 +40,11 @@ jobs:
     - name: Generate Allure Report
       run: |
         mvn allure:report
-        allure generate target/site/allure-maven-plugin --clean -o allure-report
+        mkdir -p PlaywrightTesting/src/test/java/org/example/allure-report
+        allure generate target/site/allure-maven-plugin --clean -o PlaywrightTesting/src/test/java/org/example/allure-report
 
     - name: Print Allure Summary
       run: |
         echo "================ Allure Report Summary ================"
-        allure summary allure-report || echo "No summary available"
+        allure summary PlaywrightTesting/src/test/java/org/example/allure-report || echo "No summary available"
         echo "======================================================="
