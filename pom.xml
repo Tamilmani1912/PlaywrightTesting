@@ -39,7 +39,7 @@
           <source>1.8</source>
           <target>1.8</target>
         </configuration>
-      Plugin for running tests -->
+      <!--Plugin for running tests -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
