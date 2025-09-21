@@ -37,14 +37,10 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y allure
 
-    - name: Generate Allure Report
+    - name: Generate and Print Allure Summary
       run: |
         mvn allure:report
-        mkdir -p  /home/runner/work/PlaywrightTesting/PlaywrightTesting/target/allure-results
-        allure generate target/site/allure-maven-plugin --clean -o PlaywrightTesting/src/test/java/org/example/allure-report
-
-    - name: Print Allure Summary
-      run: |
+        allure generate target/site/allure-maven-plugin --clean -o allure-report
         echo "================ Allure Report Summary ================"
-        allure summary PlaywrightTesting/src/test/java/org/example/allure-report || echo "No summary available"
+        allure summary allure-report || echo "No summary available"
         echo "======================================================="
